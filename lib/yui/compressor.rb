@@ -22,6 +22,7 @@ module YUI #:nodoc:
     def initialize(options = {}) #:nodoc:
       @options = self.class.default_options.merge(options)
       @command = [path_to_java, "-jar", path_to_jar_file, *(command_option_for_type + command_options)]
+      @command = @command.flatten.join(' ') if ENV['OS'] == 'Windows_NT'
     end
 
     # Compress a stream or string of code with YUI Compressor. (A stream is
